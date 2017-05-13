@@ -1,0 +1,33 @@
+group 'Monte-Carlo'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'info.solidsoft.pitest'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'org.assertj:assertj-core:3.8.0'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.11'
+    }
+}
+
+build.dependsOn "pitest"
+
+pitest{
+    verbose = "on"
+    targetClasses = ['sobolee.monteCarloSolver.*']
+    outputFormats = ['HTML']
+}
