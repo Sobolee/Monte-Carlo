@@ -6,6 +6,17 @@ apply plugin: 'info.solidsoft.pitest'
 
 sourceCompatibility = 1.8
 
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Mone Carlo Solver',
+                'Implementation-Version': version,
+                'Main-Class': 'sobolee.monteCarloSolver.controller.App'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 repositories {
     mavenCentral()
 }

@@ -12,14 +12,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CommandLineMessenger implements MonteCarloSolverMessenger {
-
     private final Scanner scanner;
     private final PrintWriter printWriter;
     private int dimension;
 
     public CommandLineMessenger(InputStream inputStream, OutputStream outputStream) {
         scanner = new Scanner(inputStream);
-        printWriter = new PrintWriter(outputStream);
+        printWriter = new PrintWriter(outputStream, true);
     }
 
     @Override

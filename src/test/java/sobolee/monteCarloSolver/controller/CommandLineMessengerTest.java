@@ -40,7 +40,7 @@ public class CommandLineMessengerTest {
     @Test
     public void shouldProperlyCreatePrecision() {
         // given
-        final String precisionString = "1,0\n";
+        final String precisionString = "1.0\n";
         final InputStream inputStream = new ByteArrayInputStream(precisionString.getBytes());
         final CommandLineMessenger commandLineMessenger = new CommandLineMessenger(inputStream, new NullOutputStream());
 
@@ -61,7 +61,7 @@ public class CommandLineMessengerTest {
         commandLineMessenger.sendResults(point);
 
         // then
-        assertThat(outputStream.toString()).isEqualTo("Result point: x_1=1.0 x_2=2.0 x_3=3.0 \n");
+        assertThat(outputStream.toString()).isEqualToIgnoringWhitespace("Result point: x_1=1.0 x_2=2.0 x_3=3.0");
     }
 
     private class NullOutputStream extends OutputStream {

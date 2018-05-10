@@ -7,6 +7,6 @@ public class App {
     public static void main(String[] args) {
         CommandLineMessenger messenger = new CommandLineMessenger(System.in, System.out);
         final SolverExecutor solverExecutor = new MonteCarloSolverExecutor(messenger);
-        solverExecutor.execute();
+        messenger.sendResults(solverExecutor.execute());
     }
 }
